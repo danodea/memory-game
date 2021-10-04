@@ -1,0 +1,18 @@
+body {
+  background-color: #e2bf6754;
+}
+
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 25px;
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+}

@@ -3,14 +3,15 @@ import './App.css';
 import shuffleArray from './utilities/shuffleArray';
 import Card from './components/Card/Card';
 
-function App() {
-	//set up card values
-	const seed = ['Dan', 'Pam', 'Katherine', 'Kitty', 'Gartholomew', 'Mortgage', 'White Sox', 'Chicago', 'Tacos', 'Ten', 'Cookies', 'Football'];
-	const cards = [...seed, ...seed];
-	shuffleArray(cards)
 
+//set up card values
+const seed = ['Dan', 'Pam', 'Katherine', 'Kitty', 'Gartholomew', 'Mortgage', 'White Sox', 'Chicago', 'Tacos', 'Ten', 'Cookies', 'Football'];
+const cards = [...seed, ...seed];
+shuffleArray(cards)
+
+
+function App() {
 	// state hooks
-	const [cardOrder, setCardOrder] = useState([...cards]);
 	const [foundCards, setFoundCards] = useState([]);
 	const [cardsSelected, setCardsSelected] = useState([]);
 	const [gameOver, setGameOver] = useState(false);
@@ -37,8 +38,8 @@ function App() {
 	const checkSelectedCards = () => {
 		const [firstIndex, secondIndex] = cardsSelected;
 
-		if (cardOrder[firstIndex] === cardOrder[secondIndex]) {
-			setFoundCards((foundCards) => [...foundCards, cardOrder[firstIndex]]);
+		if (cards[firstIndex] === cards[secondIndex]) {
+			setFoundCards((foundCards) => [...foundCards, cards[firstIndex]]);
 			setCardsSelected([])
 		} else {
 			setCardsSelected([])
@@ -66,7 +67,6 @@ function App() {
 
 	const handleRestart = () => {
 		shuffleArray(cards);
-		setCardOrder([...cards]);
 		setFoundCards([]);
 		setCardsSelected([]);
 		setGameOver(false);
@@ -75,7 +75,7 @@ function App() {
 	return (
 		<div className="App">
 			{!gameOver ?
-				cardOrder.map((el, index) => (
+				cards.map((el, index) => (
 					<Card 
 						name={el} 
 						key={index} 

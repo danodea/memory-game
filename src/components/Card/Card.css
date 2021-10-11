@@ -17,3 +17,7 @@
     opacity: 0;
     pointer-events: none;
 }
+
+.Card.disabled {
+    pointer-events: none;
+}

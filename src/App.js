@@ -14,6 +14,7 @@ function App() {
 	// state hooks
 	const [foundCards, setFoundCards] = useState([]);
 	const [cardsSelected, setCardsSelected] = useState([]);
+	const [isChecking, setIsChecking] = useState(false);
 	const [gameOver, setGameOver] = useState(false);
 	
 
@@ -23,6 +24,7 @@ function App() {
 		// timeout needed or else you don't get to see the second card you picked!
 		let timeout;
 		if (cardsSelected.length === 2) {
+			setIsChecking(true);
 			timeout = setTimeout(checkSelectedCards, 250);
 		}
 
@@ -40,10 +42,10 @@ function App() {
 
 		if (cards[firstIndex] === cards[secondIndex]) {
 			setFoundCards((foundCards) => [...foundCards, cards[firstIndex]]);
-			setCardsSelected([])
-		} else {
-			setCardsSelected([])
 		}
+
+		setCardsSelected([]);
+		setIsChecking(false);
 	}
 	/*  */
 	/* end game state management */
@@ -58,6 +60,10 @@ function App() {
 	const checkIsFound = (name) => {
 		return foundCards.indexOf(name) > -1;
 	};
+
+	// const checkIsDisabled = (index) => {
+	// 	return 
+	// }
 	
 	const cardClickHandler = (index) => {
         setCardsSelected((cardsSelected) => [...cardsSelected, index]);
@@ -73,7 +79,8 @@ function App() {
 	}
 
 	return (
-		<div className="App">
+		<div className={`App ${isChecking ? 'is-checking' : null}`}>
+			{/* <h1> MEMORY GAME </h1> */}
 			{!gameOver ?
 				cards.map((el, index) => (
 					<Card 

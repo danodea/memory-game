@@ -8,7 +8,7 @@ function Card(props) {
     }
 
     return (
-      <div className={`Card ${props.isFound ? 'found' : ''}`} onClick={handleClick}>
+      <div className={`Card ${props.isFound ? 'found' : ''} ${props.isSelected ? 'disabled' : ''}`} onClick={handleClick}>
           <p className="name">
               {props.isSelected ? props.name : null}
           </p>
